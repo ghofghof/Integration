@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReserverEvent index{% endblock %}
+
+{% block body %}
+    <h1>ReserverEvent index</h1>
+
+    <!-- Afficher un message d'alerte si l'e-mail ne contient pas '@' -->
+    {% if emailError is defined and emailError %}
+        <div class="alert alert-danger">{{ emailError }}</div>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id_reservation</th>
+                <th>Nom</th>
+                <th>Nbr_personne</th>
+                <th>Date_reservation</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reserver_event in reserver_events %}
+            <tr>
+                <td>{{ reserver_event.idReservation }}</td>
+                <td>{{ reserver_event.nom }}</td>
+                <td>{{ reserver_event.nbrPersonne }}</td>
+                <td>{{ reserver_event.dateReservation ? reserver_event.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reserver_event.email }}</td>
+                <td>
+                    <a href="{{ path('app_reserver_event_show', {'id_reservation': reserver_event.id_reservation}) }}">show</a>
+                    <a href="{{ path('app_reserver_event_edit', {'id_reservation': reserver_event.id_reservation}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reserver_event_new') }}">Create new</a>
+{% endblock %}
