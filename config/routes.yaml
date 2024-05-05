@@ -1,0 +1,34 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+app_delete:
+    path: /evenementdelete/{id}
+    controller: App\Controller\EvenementController::delete
+    methods: [DELETE]
+
+app_evenement_rechercher:
+    path: '/evenement/search'
+    controller: 'App\Controller\EvenementController::search'
+    methods: ['POST']
+
+app_afficher_reservation:
+    path: /afficher/reservation
+    controller: 'App\Controller\ReserverEventController::show'
+    methods: ['GET']
+
+translate_event:
+    path: /translate-event # Assurez-vous que cette clé est unique
+    controller: 'App\Controller\EvenementController::translateEvent'
+    methods: ['POST']
+# config/routes.yaml
+reservation_new:
+    path: /reserver/event/reservations/new
+    controller: App\Controller\ReserverEventController::create
+    methods: ['GET', 'POST']
+app_evenement_statistiques:
+    path: /evenement/statistiques
+    controller: 'App\Controller\EvenementController::statistiques'
+    methods: ['GET']
+# config/routes.yaml
+
